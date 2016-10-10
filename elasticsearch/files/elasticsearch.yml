@@ -100,7 +100,7 @@ http.port: {{ elasticsearch.config['http.port'] }}
 # The default list of hosts is ["127.0.0.1", "[::1]"]
 #
 {%- if elasticsearch.config['discovery.zen.ping.unicast.hosts'] is defined %}
-discovery.zen.ping.unicast.hosts: {{ elasticsearch.config['discovery.zen.ping.unicast.hosts'] }}
+discovery.zen.ping.unicast.hosts: ["{{ elasticsearch.config['discovery.zen.ping.unicast.hosts'] | join('", "') }}"]
 {%- else %}
 # discovery.zen.ping.unicast.hosts: ["host1", "host2"]
 {%- endif %}
